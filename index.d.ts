@@ -9,6 +9,7 @@ interface Mp {
 	players: PlayerMpPool;
 	objects: ObjectMpPool;
 	vehicles: VehicleMpPool;
+	browsers: BrowserMp;
 
 	Vector3: Vector3Mp;
 
@@ -219,6 +220,7 @@ interface EventMpPool extends EntityMpPool<EventMp> {
 	add(eventName: string, callback: (...args: any[]) => void): void;
 	addCommand(commandName: string, callback: (player: PlayerMp, fullText: string, ...args: string[]) => void): void;
 	call(eventName: string, ...args: any[]): void;
+	callRemote(eventName: String): void;
 }
 
 interface EnvironmentMp {
@@ -232,6 +234,10 @@ interface Vector3Mp {
 	x: number;
 	y: number;
 	z: number;
+}
+
+interface BrowserMp {
+	"new"(location: String): BrowserMp;
 }
 
 declare const enum ClothesComponentMp {
